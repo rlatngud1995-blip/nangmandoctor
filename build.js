@@ -44,6 +44,13 @@ const HERO_SVG = `<svg viewBox="0 0 560 560" fill="none" role="img" aria-label="
 <circle cx="280" cy="342" r="4" fill="#7fd8ff"/><path d="M280 342 410 268" stroke="#7fd8ff" stroke-width="1" stroke-dasharray="3 4"/><text x="414" y="266" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#7fd8ff">LED · FILTER</text>
 </svg>`;
 const LOGO_SVG = `<svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#2f6bff"/><path d="M16.5 8h7v8.5L32 23H8l8.5-6.5z" fill="#fff"/><rect x="8" y="23" width="24" height="2.6" rx="1" fill="#fff"/><path d="m14.5 30.5 3.6 3.4 7.4-7.2" fill="none" stroke="#7fd8ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const TDESC = {
+  slim: '슬림형 후드 교체 전문 바로후드. 상부장 폭과 덕트 위치를 확인해 같은 자리에 깔끔하게 교체합니다. 매일 09~22시 상담.',
+  chimney: '침니형 후드 교체·설치. 벽체 고정과 커버 높이를 맞추고, 슬림형에서 침니형 전환도 상담합니다. 바로후드',
+  island: '아일랜드 후드 설치·교체. 천장 고정과 수평, 덕트 경로까지 확인해 시공합니다. 사진 한 장으로 견적 상담, 바로후드',
+  'built-in': '빌트인(히든) 후드 교체. 상부장 내부 치수를 실측해 같은 규격으로 교체하고 패널까지 점검합니다. 바로후드',
+  duct: '후드 덕트 교체·역류 방지 댐퍼 설치. 찢어지고 꺾인 덕트를 정리해 흡입력과 냄새 역류를 개선합니다. 바로후드'
+};
 const LINEUP = ['slim', 'chimney', 'built-in', 'island', 'duct'].map(k => TYPES.find(t => t.slug === k));
 const typeImg = t => has(`type-${t.slug}.webp`) ? `/img/type-${t.slug}.webp` : null;
 const typeVisual = (t, alt, eager) => typeImg(t) ? `<img src="${typeImg(t)}" alt="${esc(alt)}" width="640" height="800" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'}>` : ILL[t.slug] || HERO_SVG;
@@ -74,6 +81,7 @@ const unit = a => a === seoul ? '구' : a === ic ? '구·군' : a.level === 'sid
 function head(o) {
   if (titles.has(o.title)) throw new Error('중복 title: ' + o.title + ' @ ' + o.path + ' & ' + titles.get(o.title));
   if (descs.has(o.desc)) throw new Error('중복 description @ ' + o.path + ' & ' + descs.get(o.desc));
+  if (!o.noindex && [...o.desc].length > 80) throw new Error('설명 80자 초과(' + [...o.desc].length + '): ' + o.path);
   titles.set(o.title, o.path); descs.set(o.desc, o.path);
   pages.push({ path: o.path, title: o.title, desc: o.desc, noindex: o.noindex });
   const og = SITE + (o.image || '/og.png');
@@ -168,7 +176,7 @@ function main() {
   const SYM = [['흡입력이 약해요', '연기가 위로 안 빨려요'], ['소리가 너무 커요', '윙윙·떨림 소음'], ['냄새가 역류해요', '다른 집 냄새가 들어와요'], ['기름이 떨어져요', '쿡탑 위로 기름 방울'], ['쿡탑을 바꿨어요', '인덕션 폭에 맞추고 싶어요'], ['형태를 바꾸고 싶어요', '슬림 → 침니·아일랜드']];
   let h = head({
     path: '/', title: `${BRAND} | 주방 후드 교체·설치 전문 — 슬림·침니·아일랜드·빌트인`,
-    desc: `주방 후드 교체 전문 ${BRAND}. 흡입력 약한 후드, 시끄러운 후드를 실측 후 맞는 규격으로 교체하고 덕트까지 정리합니다. 서울·경기·인천·충남 출장, 매일 09~22시 상담.`,
+    desc: `주방 후드 교체 전문 ${BRAND}. 슬림·침니·아일랜드 후드를 실측 후 교체하고 덕트까지 정리합니다. 서울·경기·인천·충남 출장.`,
     ld: [BIZ(SIDO.map(s => ({ '@type': 'AdministrativeArea', name: s.full }))), { '@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE + '/#website', name: BRAND, url: SITE + '/', inLanguage: 'ko-KR', publisher: { '@id': BIZ_ID } }, FAQLD(faqs)]
   });
   h += `
@@ -248,7 +256,7 @@ function typePage(t) {
   const gal = GALLERY.filter(g => g.type === t.slug);
   const isDuct = t.slug === 'duct';
   let h = head({
-    path: p, title: isDuct ? `후드 덕트 교체·역류 방지 댐퍼 시공 | ${BRAND}` : `${t.name} 교체·설치 전문 시공 | ${BRAND}`, desc: `${t.lead} 교체 전 확인할 점과 시공 과정, 자주 묻는 질문을 정리했습니다.`,
+    path: p, title: isDuct ? `후드 덕트 교체·역류 방지 댐퍼 시공 | ${BRAND}` : `${t.name} 교체·설치 전문 시공 | ${BRAND}`, desc: TDESC[t.slug],
     image: typeImg(t),
     ld: [CRUMB(cr), FAQLD(faqs), { '@context': 'https://schema.org', '@type': 'Service', name: t.name, serviceType: '주방 후드 교체', description: t.lead, url: SITE + p, image: typeImg(t) ? SITE + typeImg(t) : undefined, provider: { '@id': BIZ_ID }, areaServed: SIDO.map(s => ({ '@type': 'AdministrativeArea', name: s.full })) }]
   });
