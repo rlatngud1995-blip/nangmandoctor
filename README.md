@@ -1,8 +1,9 @@
-# 낭만닥터집사부 홈페이지
+# 매직후드 홈페이지
 
-정적 사이트 생성기. `node build.js` → `public/`
+주방 후드 교체 전문 매직후드 정적 사이트. `node build.js` → `public/`
 
-- `data.js` — 연락처, 시공 항목, 지역 목록
+- `data.js` — 연락처, 도메인(SITE), 네이버·구글 소유확인 코드, 후드 종류, 가이드, 지역, 시공 사례
+- `pool.js` — 지역 페이지 문장 풀 (페이지마다 다른 조합)
 - `style.css` — 디자인
-- `img/` — 시공 사진 (`{slug}.webp`, 썸네일 `{slug}-s.webp`)
-- 도메인 연결 시 `data.js`의 `SITE` 값을 바꾸면 canonical·사이트맵이 함께 바뀝니다.
+- `img/type-{slug}.webp` — 후드 종류 대표 사진, `img/gallery/` — 시공 전·후 사진
+- `static/` — 파비콘, OG 이미지
