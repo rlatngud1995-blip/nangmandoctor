@@ -82,8 +82,12 @@ ${D.NAVER_VERIFY ? `<meta name="naver-site-verification" content="${esc(D.NAVER_
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b0c0e">
 <meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="application/rss+xml" title="${BRAND}" href="${SITE}/rss.xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -118,7 +122,7 @@ function foot(body) {
 const BIZ_ID = SITE + '/#business';
 const BIZ = areaServed => ({
   '@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness', '@id': BIZ_ID, name: BRAND, url: SITE + '/', telephone: '+82-10-9413-4686',
-  image: SITE + '/og.png', logo: SITE + '/apple-touch-icon.png',
+  image: SITE + '/og.png', logo: SITE + '/icon-512.png',
   description: '주방 후드 교체·설치 전문. 슬림형·침니형·아일랜드·빌트인 후드 교체와 후드 덕트 교체.',
   areaServed, knowsAbout: ['주방 후드 교체', '렌지후드 설치', '아일랜드 후드', '침니 후드', '빌트인 후드', '후드 덕트', '역류 방지 댐퍼'],
   openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '09:00', closes: '22:00' }],
