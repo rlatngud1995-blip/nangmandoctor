@@ -1,13 +1,13 @@
 // ===== 바로후드 사이트 설정 =====
 // 도메인을 연결하면 SITE만 바꾸면 canonical·사이트맵·RSS가 모두 바뀝니다.
-exports.SITE = 'https://magichood-eight.vercel.app';
+exports.SITE = 'https://www.barohood.com';
 exports.BRAND = '바로후드';
 exports.PHONE = '01094134686';
 exports.PHONE_D = '010-9413-4686';
 exports.HOURS = '매일 09:00 – 22:00';
 exports.AS = '시공 후 1개월 A/S';
 // 네이버 서치어드바이저 / 구글 서치콘솔 소유확인 코드 (받으면 붙여넣기)
-exports.NAVER_VERIFY = '';
+exports.NAVER_VERIFY = 'a63b46bc1e5865d5e8969af7587f77ed36e8c888';
 exports.GOOGLE_VERIFY = '';
 
 // ===== 후드 종류 (img/type-{slug}.webp 가 있으면 사진, 없으면 일러스트) =====
