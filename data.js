@@ -1,6 +1,6 @@
 // ===== 매직후드 사이트 설정 =====
 // 도메인을 연결하면 SITE만 바꾸면 canonical·사이트맵·RSS가 모두 바뀝니다.
-exports.SITE = 'https://magichood.vercel.app';
+exports.SITE = 'https://magichood-eight.vercel.app';
 exports.BRAND = '매직후드';
 exports.PHONE = '01094134686';
 exports.PHONE_D = '010-9413-4686';
