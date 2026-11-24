@@ -1,4 +1,4 @@
-// 매직후드 정적 사이트 생성기 — node build.js → public/
+// 후드4번타자들 정적 사이트 생성기 — node build.js → public/
 const fs = require('fs');
 const path = require('path');
 const D = require('./data.js');
@@ -23,15 +23,16 @@ let CSSV = '';
 
 // ---------- illustrations (사진이 없을 때)
 const ILL = {
-  duct: `<svg viewBox="0 0 200 220" fill="none" role="img" aria-label="후드 덕트 일러스트"><path d="M40 196V126c0-22 18-40 40-40h50c22 0 40-18 40-40V22" stroke="url(#g5)" stroke-width="30" stroke-linecap="round"/><path d="M40 196V126c0-22 18-40 40-40h50c22 0 40-18 40-40V22" stroke="#e9bd6a" stroke-width="1.8" stroke-dasharray="4 10" stroke-linecap="round" class="dash"/><rect x="154" y="8" width="32" height="12" rx="2" fill="#d4a24c"/><rect x="24" y="196" width="32" height="12" rx="2" fill="#9ca1a8"/><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b9bdc3"/><stop offset="1" stop-color="#5c6168"/></linearGradient></defs></svg>`
+  duct: `<svg viewBox="0 0 200 220" fill="none" role="img" aria-label="후드 덕트 일러스트"><path d="M40 196V126c0-22 18-40 40-40h50c22 0 40-18 40-40V22" stroke="url(#g5)" stroke-width="30" stroke-linecap="round"/><path d="M40 196V126c0-22 18-40 40-40h50c22 0 40-18 40-40V22" stroke="#ffb81c" stroke-width="1.8" stroke-dasharray="4 10" stroke-linecap="round" class="dash"/><rect x="154" y="8" width="32" height="12" rx="2" fill="#d4a24c"/><rect x="24" y="196" width="32" height="12" rx="2" fill="#9ca1a8"/><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b9bdc3"/><stop offset="1" stop-color="#5c6168"/></linearGradient></defs></svg>`
 };
 const HERO_SVG = `<svg viewBox="0 0 560 572" fill="none" role="img" aria-label="연기를 빨아들이는 침니형 주방 후드 일러스트">
-<defs><linearGradient id="hs" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#6f747b"/><stop offset=".45" stop-color="#e4e6e9"/><stop offset=".55" stop-color="#c9ccd1"/><stop offset="1" stop-color="#5d6269"/></linearGradient><linearGradient id="hb" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#cfd2d6"/><stop offset="1" stop-color="#7e838a"/></linearGradient><radialGradient id="lg" cx="50%" cy="0%" r="80%"><stop stop-color="#e9bd6a" stop-opacity=".5"/><stop offset="1" stop-color="#e9bd6a" stop-opacity="0"/></radialGradient><linearGradient id="ct" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#202328"/><stop offset="1" stop-color="#101214"/></linearGradient></defs>
-<rect x="232" y="0" width="96" height="190" fill="url(#hs)"/><path d="M90 300 232 190h96l142 110z" fill="url(#hs)"/><rect x="90" y="300" width="380" height="22" rx="3" fill="url(#hb)"/><rect x="170" y="318" width="220" height="4" rx="2" fill="#e9bd6a"/>
+<defs><linearGradient id="hs" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#6f747b"/><stop offset=".45" stop-color="#e4e6e9"/><stop offset=".55" stop-color="#c9ccd1"/><stop offset="1" stop-color="#5d6269"/></linearGradient><linearGradient id="hb" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#cfd2d6"/><stop offset="1" stop-color="#7e838a"/></linearGradient><radialGradient id="lg" cx="50%" cy="0%" r="80%"><stop stop-color="#ffb81c" stop-opacity=".5"/><stop offset="1" stop-color="#ffb81c" stop-opacity="0"/></radialGradient><linearGradient id="ct" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#202328"/><stop offset="1" stop-color="#101214"/></linearGradient></defs>
+<rect x="232" y="0" width="96" height="190" fill="url(#hs)"/><path d="M90 300 232 190h96l142 110z" fill="url(#hs)"/><rect x="90" y="300" width="380" height="22" rx="3" fill="url(#hb)"/><rect x="170" y="318" width="220" height="4" rx="2" fill="#ffb81c"/>
 <path class="glow" d="M120 322h320l70 190H50z" fill="url(#lg)"/>
-<g class="flow" stroke="#e9bd6a" stroke-width="2.2" stroke-linecap="round" opacity=".85"><path d="M170 500c-10-60 30-90 30-170"/><path d="M230 510c0-70 20-100 20-185"/><path d="M290 512c-6-70 10-110-6-190"/><path d="M350 508c6-70-14-100-10-185"/><path d="M410 500c10-60-26-90-30-170"/></g>
-<rect x="40" y="512" width="480" height="44" rx="6" fill="url(#ct)" stroke="#2c3036"/><ellipse cx="190" cy="520" rx="52" ry="7" fill="#0b0c0e" stroke="#3a3f46"/><ellipse cx="370" cy="520" rx="52" ry="7" fill="#0b0c0e" stroke="#3a3f46"/><circle cx="452" cy="540" r="4" fill="#e9bd6a"/><circle cx="472" cy="540" r="4" fill="#3a3f46"/></svg>`;
-const LOGO_SVG = `<svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#131518"/><rect x=".5" y=".5" width="39" height="39" rx="10.5" stroke="#d4a24c" stroke-opacity=".5"/><path d="M16 9h8v8l8 7H8l8-7z" fill="#e1e4e7"/><rect x="8" y="24" width="24" height="3" rx="1" fill="#e9bd6a"/><path d="M14 31v2M20 31v3M26 31v2" stroke="#e9bd6a" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+<g class="flow" stroke="#ffb81c" stroke-width="2.2" stroke-linecap="round" opacity=".85"><path d="M170 500c-10-60 30-90 30-170"/><path d="M230 510c0-70 20-100 20-185"/><path d="M290 512c-6-70 10-110-6-190"/><path d="M350 508c6-70-14-100-10-185"/><path d="M410 500c10-60-26-90-30-170"/></g>
+<rect x="40" y="512" width="480" height="44" rx="6" fill="url(#ct)" stroke="#2c3036"/><ellipse cx="190" cy="520" rx="52" ry="7" fill="#0b0c0e" stroke="#3a3f46"/><ellipse cx="370" cy="520" rx="52" ry="7" fill="#0b0c0e" stroke="#3a3f46"/><circle cx="452" cy="540" r="4" fill="#ffb81c"/><circle cx="472" cy="540" r="4" fill="#3a3f46"/></svg>`;
+const LOGO_SVG = `<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#f7f4ec"/><path d="M8.5 7.5c4.5 3.2 6.6 7.6 6.6 12.5s-2.1 9.3-6.6 12.5M31.5 7.5c-4.5 3.2-6.6 7.6-6.6 12.5s2.1 9.3 6.6 12.5" fill="none" stroke="#e0303f" stroke-width="1.6" stroke-dasharray="2 2.2"/><text x="20" y="27.5" text-anchor="middle" font-family="Pretendard,Arial,sans-serif" font-weight="900" font-size="21" font-style="italic" fill="#0a1222">4</text></svg>`;
+const LINEUP = ['slim', 'chimney', 'built-in', 'island', 'duct'].map(k => TYPES.find(t => t.slug === k));
 const typeImg = t => has(`type-${t.slug}.webp`) ? `/img/type-${t.slug}.webp` : null;
 const typeVisual = (t, alt, eager) => typeImg(t) ? `<img src="${typeImg(t)}" alt="${esc(alt)}" width="640" height="800" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'}>` : ILL[t.slug] || HERO_SVG;
 
@@ -80,7 +81,7 @@ ${D.NAVER_VERIFY ? `<meta name="naver-site-verification" content="${esc(D.NAVER_
 <meta property="og:image" content="${og}">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b0c0e">
+<meta name="theme-color" content="#0a1222">
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -132,8 +133,10 @@ const FAQLD = f => ({ '@context': 'https://schema.org', '@type': 'FAQPage', main
 const CRUMB = l => ({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: l.map(([n, p], i) => ({ '@type': 'ListItem', position: i + 1, name: n, item: SITE + p })) });
 const crumbHtml = l => `<nav class="crumb" aria-label="현재 위치">${l.map(([n, p], i) => i < l.length - 1 ? `<a href="${p}">${esc(n)}</a><i>/</i>` : `<span aria-current="page">${esc(n)}</span>`).join('')}</nav>`;
 const faqHtml = f => `<div class="faq">${f.map(([q, a], i) => `<details${i === 0 ? ' open' : ''}><summary>${esc(q)}</summary><p>${a}</p></details>`).join('')}</div>`;
-const FIN = (lead, body) => `<section class="fin"><div class="wrap"><span class="ey">Contact</span><h2 style="margin-top:18px">${lead}</h2><a href="tel:${PHONE}" class="big">${PHONE_D}</a><p>상담 ${D.HOURS} · ${D.AS}</p><div class="cta"><a class="btn btn-g ar" href="${esc(sms(body))}">후드 사진 보내고 견적받기</a><a class="btn btn-o" href="tel:${PHONE}">전화 상담</a></div></div></section>`;
+const FIN = (lead, body) => `<section class="fin"><div class="wrap"><span class="ey">Batter up</span><h2 style="margin-top:18px">${lead}</h2><a href="tel:${PHONE}" class="big">${PHONE_D}</a><p>상담 ${D.HOURS} · ${D.AS}</p><div class="cta"><a class="btn btn-g ar" href="${esc(sms(body))}">후드 사진 보내고 견적받기</a><a class="btn btn-o" href="tel:${PHONE}">전화 상담</a></div></div></section>`;
 const TL = [['사진 상담', '지금 후드 사진과 쿡탑이 보이는 사진을 문자로 보내 주세요.'], ['규격 확인', '후드 폭, 덕트 위치, 상부장 구조를 보고 맞는 제품과 범위를 안내합니다.'], ['방문 철거', '보양 후 기존 후드를 안전하게 철거하고 덕트 상태를 점검합니다.'], ['설치·연결', '수평을 맞춰 고정하고 덕트와 전원을 연결해 마감합니다.'], ['작동 확인', '흡입·조명·버튼을 함께 확인하고, 시공 후 1개월 A/S를 책임집니다.']];
+const BASES = [['1루', '사진 상담', '후드 정면 사진과 쿡탑이 보이는 사진을 문자로 보내 주세요.'], ['2루', '규격 확인', '후드 폭, 덕트 위치, 상부장·천장 구조를 보고 맞는 제품과 범위를 안내합니다.'], ['3루', '철거·설치', '보양 후 기존 후드를 철거하고, 덕트를 점검한 뒤 새 후드를 수평 맞춰 설치합니다.'], ['홈인', '작동 확인', '흡입·조명·버튼을 함께 확인하고 시공 후 1개월 A/S를 책임집니다.']];
+const DIAMOND = `<div class="dia"><svg viewBox="0 0 420 420" role="img" aria-label="1루 사진 상담, 2루 규격 확인, 3루 철거·설치, 홈인 작동 확인으로 이어지는 진행 과정"><rect width="420" height="420" rx="28" fill="#1f7a4d"/><path d="M210 40 380 210 210 380 40 210z" fill="#b5895b"/><path d="M210 92 328 210 210 328 92 210z" fill="#2a8a59"/><path d="M210 380 380 210 210 40 40 210z" fill="none" stroke="#fff" stroke-width="4"/><circle cx="210" cy="214" r="16" fill="#c79a6b"/>${[[380, 210, '1'], [210, 40, '2'], [40, 210, '3']].map(([x, y, n]) => `<g><rect x="${x - 15}" y="${y - 15}" width="30" height="30" fill="#fff" transform="rotate(45 ${x} ${y})"/><text x="${x}" y="${y + 5}" text-anchor="middle" font-size="15" font-weight="800" fill="#0a1222">${n}</text></g>`).join('')}<path d="M196 368h28v12l-14 14-14-14z" fill="#fff"/><path d="M210 380 380 210" stroke="#ffb81c" stroke-width="5" stroke-dasharray="8 10" stroke-linecap="round" class="dash"/><path d="M380 210 210 40 40 210 210 380" stroke="#ffb81c" stroke-width="3" stroke-dasharray="8 10" stroke-linecap="round" opacity=".55" fill="none" class="dash"/></svg><ol class="bases">${BASES.map(([a, b, c]) => `<li><em>${a}</em><b>${b}</b><span>${c}</span></li>`).join('')}</ol></div>`;
 const tlHtml = () => `<div class="tl">${TL.map(([a, b], i) => `<div><span class="d">${i + 1}</span><h3>${a}</h3><p>${b}</p></div>`).join('')}</div>`;
 const galHtml = (list, eager) => `<div class="ba">${list.map(g => `<figure><img src="/img/gallery/${g.file}" alt="${BRAND} ${esc(g.title)} 시공 전 시공 후 비교 사진" width="1400" height="700" ${eager ? '' : 'loading="lazy"'}><figcaption><b>${esc(g.title)}</b><span>${esc(g.note)}</span></figcaption></figure>`).join('')}</div>`;
 function write(p, html) { const f = path.join(OUT, p, 'index.html'); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, html); }
@@ -156,14 +159,14 @@ function main() {
     ld: [BIZ(SIDO.map(s => ({ '@type': 'AdministrativeArea', name: s.full }))), { '@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE + '/#website', name: BRAND, url: SITE + '/', inLanguage: 'ko-KR', publisher: { '@id': BIZ_ID } }, FAQLD(faqs)]
   });
   h += `
-<section class="hero"><div class="wrap">
+<section class="hero"><span class="num4" aria-hidden="true">4</span><div class="wrap">
   <div class="hg">
     <div>
-      <span class="ey">Kitchen Hood Specialist</span>
-      <h1>주방 후드 교체,<br><em>매직후드</em>가<br>제대로 합니다.</h1>
-      <p class="sub">후드만 다룹니다. 그래서 상부장 폭, 덕트 경로, 천장 구조까지 먼저 봅니다. 연기는 빨아들이고 소음과 냄새는 줄이는 후드 교체.</p>
+      <span class="ey">Clean-up Hitter · Kitchen Hood</span>
+      <h1>주방 후드는<br><em>4번 타자</em>에게<br>맡기세요.</h1>
+      <p class="sub">찬스에 강한 4번 타자처럼, 연기·소음·냄새를 한 번에 해결합니다. 후드만 다루기 때문에 상부장 폭, 덕트 경로, 천장 구조까지 먼저 보고 확실하게 교체합니다.</p>
       <div class="cta"><a class="btn btn-g ar" href="${esc(sms(body))}">후드 사진 보내고 견적받기</a><a class="btn btn-o" href="tel:${PHONE}">${PHONE_D}</a></div>
-      <div class="badges"><div><b>5가지</b><span>후드 형태 시공</span></div><div><b>09–22</b><span>매일 상담</span></div><div><b>1개월</b><span>시공 후 A/S</span></div><div><b>4개 시·도</b><span>서울·경기·인천·충남</span></div></div>
+      <div class="score" aria-label="업체 정보"><div><span>상담</span><b>09-22</b></div><div><span>A/S</span><b>1M</b></div><div><span>후드 종류</span><b>5</b></div><div><span>시·도</span><b>4</b></div></div>
     </div>
     <div class="hv">${HERO_SVG}</div>
   </div>
@@ -171,28 +174,28 @@ function main() {
 </div></section>
 
 <section id="works"><div class="wrap">
-  <div class="hrow"><div><span class="ey">01 · Before &amp; After</span><h2 class="h">말보다 사진으로<br>보여 드립니다</h2><p class="lead">${BRAND}가 직접 교체한 현장입니다. 같은 주방, 후드만 바꿨습니다.</p></div></div>
+  <div class="hrow"><div><span class="ey">01 · Highlight</span><h2 class="h">오늘의 하이라이트,<br>시공 전·후</h2><p class="lead">${BRAND}이 직접 교체한 현장입니다. 같은 주방, 후드만 바꿨습니다.</p></div></div>
   ${galHtml(GALLERY)}
 </div></section>
 
 <section class="st0" id="start"><div class="wrap">
-  <span class="ey">02 · Diagnosis</span><h2 class="h">어떤 문제가 있으세요?</h2><p class="lead">증상을 고르고 지역을 적으면 견적 문자가 자동으로 작성됩니다. 사진만 첨부해서 보내 주세요.</p>
+  <span class="ey">02 · Scouting</span><h2 class="h">어떤 문제가 있으세요?</h2><p class="lead">증상을 고르고 지역을 적으면 견적 문자가 자동으로 작성됩니다. 사진만 첨부해서 보내 주세요.</p>
   <div class="pick" role="group" aria-label="후드 증상 선택">${SYM.map(([a, b], i) => `<button type="button" aria-pressed="${i === 0}" data-v="${esc(a)}"><b>${a}</b><small>${b}</small></button>`).join('')}</div>
   <div class="pick-go"><p>선택한 증상: <b id="sv">${SYM[0][0]}</b></p><label for="ar" class="sr">지역</label><input id="ar" type="text" placeholder="지역 (예: 수원시 영통구)" autocomplete="address-level2"><a id="go" class="btn btn-k ar" href="sms:${PHONE}">문자 견적 보내기</a></div>
 </div></section>
 
 <section class="dk" id="types"><div class="wrap">
-  <div class="hrow"><div><span class="ey">03 · Hood types</span><h2 class="h">우리 집 후드는<br>어떤 형태인가요</h2><p class="lead">형태마다 확인할 부분이 다릅니다. 지금 쓰는 후드와 비슷한 형태를 눌러 보세요.</p></div><a class="btn btn-o ar" href="/guide/choose-type/">후드 종류 고르는 법</a></div>
-  <div class="types">${TYPES.map(t => `<a class="tc" href="/hood/${t.slug}/"><div class="ill">${typeVisual(t, `${BRAND} ${t.name} 교체 시공 사진`)}</div><div class="tx"><small>${t.en.toUpperCase()}</small><h3>${t.name}</h3><p>${t.lead}</p></div></a>`).join('')}</div>
+  <div class="hrow"><div><span class="ey">03 · Line-up</span><h2 class="h">오늘의 라인업,<br>후드 5종</h2><p class="lead">형태마다 확인할 부분이 다릅니다. 지금 쓰는 후드와 비슷한 형태를 눌러 보세요.</p></div><a class="btn btn-o ar" href="/guide/choose-type/">후드 종류 고르는 법</a></div>
+  <div class="types">${LINEUP.map((t, i) => `<a class="tc${i === 3 ? ' clean' : ''}" href="/hood/${t.slug}/"><div class="ill"><span class="order"><i>${i + 1}</i>${i === 3 ? '4번 타자' : i + 1 + '번 타자'}</span>${typeVisual(t, `${BRAND} ${t.name} 교체 시공 사진`)}</div><div class="tx"><small>${t.en.toUpperCase()}</small><h3>${t.name}</h3><p>${t.lead}</p></div></a>`).join('')}</div>
   <div class="why">
-    <div><span class="n">01</span><h3>후드만 합니다</h3><p>후드와 덕트만 다루기 때문에 현장 판단이 빠르고 정확합니다.</p></div>
-    <div><span class="n">02</span><h3>덕트까지 봅니다</h3><p>새 후드 성능이 제대로 나오도록 덕트 손상과 꺾임을 함께 확인합니다.</p></div>
-    <div><span class="n">03</span><h3>먼저 설명합니다</h3><p>규격, 작업 범위, 필요한 부속을 시공 전에 먼저 안내합니다.</p></div>
-    <div><span class="n">04</span><h3>끝까지 확인합니다</h3><p>흡입·조명·버튼을 함께 확인하고 시공 후 1개월 A/S를 책임집니다.</p></div>
+    <div><span class="n">CONTACT</span><h3>후드만 합니다</h3><p>후드와 덕트만 다루기 때문에 현장 판단이 빠르고 정확합니다.</p></div>
+    <div><span class="n">POWER</span><h3>덕트까지 봅니다</h3><p>새 후드 성능이 제대로 나오도록 덕트 손상과 꺾임을 함께 확인합니다.</p></div>
+    <div><span class="n">EYE</span><h3>먼저 설명합니다</h3><p>규격, 작업 범위, 필요한 부속을 시공 전에 먼저 안내합니다.</p></div>
+    <div><span class="n">CLUTCH</span><h3>끝까지 확인합니다</h3><p>흡입·조명·버튼을 함께 확인하고 시공 후 1개월 A/S를 책임집니다.</p></div>
   </div>
 </div></section>
 
-<section id="process"><div class="wrap"><span class="ey">04 · Process</span><h2 class="h">사진 한 장에서<br>작동 확인까지</h2>${tlHtml()}</div></section>
+<section id="process"><div class="wrap"><span class="ey">04 · Base running</span><h2 class="h">1루에서 홈인까지,<br>교체는 이렇게 진행됩니다</h2>${DIAMOND}</div></section>
 
 <section class="st0" id="guide"><div class="wrap">
   <div class="hrow"><div><span class="ey">05 · Guide</span><h2 class="h">후드 교체 전에<br>읽어 보세요</h2></div><a class="btn btn-l ar" href="/guide/">가이드 전체</a></div>
@@ -205,7 +208,7 @@ function main() {
 </div></section>
 
 <section id="faq"><div class="wrap"><span class="ey">07 · FAQ</span><h2 class="h">자주 묻는 질문</h2>${faqHtml(faqs)}</div></section>
-${FIN('연기 가득한 주방,<br>오늘 상담하세요.', body)}
+${FIN('이번 타석,<br>확실하게 쳐 드립니다.', body)}
 <script>
 (function(){var P='${PHONE}',b=document.querySelectorAll('.pick button'),sv=document.getElementById('sv'),ar=document.getElementById('ar'),go=document.getElementById('go'),v=b[0].dataset.v;
 function u(){go.href='sms:'+P+'?&body='+encodeURIComponent('[${BRAND} 후드 견적]\\n증상: '+v+'\\n지역: '+(ar.value.trim()||'')+'\\n(후드 사진 첨부)')}
@@ -329,7 +332,7 @@ ${FIN(`${esc(n)} 후드 교체,<br>지금 상담하세요.`, body)}` + foot(body
 }
 function areaIndex() {
   const p = '/area/', cr = [['홈', '/'], ['시공 지역', p]];
-  let h = head({ path: p, title: `후드 교체 시공 지역 — 서울·경기·인천·충남 시·군·구 | ${BRAND}`, desc: '서울 25개 구, 경기 31개 시·군과 구, 인천 구·군, 충남 시·군까지. 매직후드 후드 교체 방문 지역을 확인하세요.', ld: [CRUMB(cr)] });
+  let h = head({ path: p, title: `후드 교체 시공 지역 — 서울·경기·인천·충남 시·군·구 | ${BRAND}`, desc: `서울 25개 구, 경기 31개 시·군과 구, 인천 구·군, 충남 시·군까지. ${BRAND} 후드 교체 방문 지역을 확인하세요.`, ld: [CRUMB(cr)] });
   h += `<section class="sh"><div class="wrap">${crumbHtml(cr)}<h1>어디든 <em>후드 교체</em><br>방문합니다</h1><p class="sub">시·도를 고른 뒤 시·군·구를 선택하면 해당 지역 안내를 볼 수 있습니다.</p></div></section>
 <section style="padding-top:72px"><div class="wrap">${SIDO.map(s => `<div class="blk"><h2><a href="${s.path}">${s.full}</a></h2>${s.children.some(c => c.children && c.children.length) ? s.children.map(c => `<div class="ll" style="margin-top:12px"><a class="on" href="${c.path}">${c.name}</a>${(c.children || []).map(g => `<a href="${g.path}">${g.name}</a>`).join('')}</div>`).join('') : `<div class="ll">${s.children.map(c => `<a href="${c.path}">${c.name}</a>`).join('')}</div>`}</div>`).join('')}</div></section>` + foot();
   write(p, h);
